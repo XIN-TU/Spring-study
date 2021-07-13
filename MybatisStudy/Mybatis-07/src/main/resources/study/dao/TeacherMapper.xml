@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="study.dao.TeacherMapper">
+<!--    按照结果嵌套查询-->
+    <resultMap id="TeacherStudent" type="study.pojo.Teacher">
+        <result property="id" column="tid"/>
+        <result property="name" column="tname"/>
+<!--       复杂的属性我们需要单独处理
+            如果是对象 我们用 association
+            如果是集合 我们用 collection
+            javaType="" 指定属性的类型
+            集合中的泛型信息，我们使用ofType-->
+        <collection property="students" ofType="study.pojo.Student">
+            <result property="id" column="sid"/>
+            <result property="name" column="sname"/>
+            <result property="id" column="sid"/>
+        </collection>
+    </resultMap>
+    <select id="getTeacher" resultMap="TeacherStudent">
+        select s.id sid,s.name sname,t.name tname,t.id tid
+        from student s, teacher t
+        where s.tid = t.id and t.id = #{tid};
+    </select>
+
+<!--    ==================================================================-->
+
+    <resultMap id="TeacherStudent2" type="study.pojo.Teacher">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="students" javaType="ArrayList" ofType="study.pojo.Student" select="getStudentByTeacherId" column="id"/>
+    </resultMap>
+
+    <select id="getTeacher2" resultMap="TeacherStudent2">
+        select * from mybatis.teacher where id=#{tid};
+    </select>
+
+    <select id="getStudentByTeacherId" resultType="study.pojo.Student">
+        select * from mybatis.student where tid = #{tid}
+    </select>
+</mapper>

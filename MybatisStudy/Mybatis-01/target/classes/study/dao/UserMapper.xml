@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 绑定一个对应的Dao/Mapper接口 -->
+<mapper namespace="study.dao.UserMapper">
+
+<!--    select 查询语句 ： id：绑定方法的名字 resultType: 返回类型-->
+    <select id="getUserList" resultType="study.pojo.User">
+        select * from mybatis.users
+    </select>
+
+    <select id="getUserById" resultType="study.pojo.User" parameterType="int">
+        select * from mybatis.users where ID = #{id}
+     </select>
+
+<!--    对象中的属性可以直接取出来-->
+    <insert id="addUser" parameterType="study.pojo.User">
+        insert into mybatis.users (id,name,pwd) values (#{ID},#{NAME},#{PWD})
+    </insert>
+
+    <update id="updateUser" parameterType="study.pojo.User" >
+        update mybatis.users set NAME = #{NAME} , PWD = #{PWD} where ID=#{ID} ;
+    </update>
+
+    <delete id="deleteUser" parameterType="study.pojo.User">
+        delete from mybatis.users where ID = #{ID};
+    </delete>
+
+<!--    传递map的key-->
+    <insert id="addUser2" parameterType="map">
+        insert into mybatis.users (id,name,pwd) values (#{userId},#{userName},#{userPassword})
+    </insert>
+
+    <select id="getUserById2" resultType="study.pojo.User" parameterType="map">
+        select * from mybatis.users where ID = #{id} and NAME=#{name};
+     </select>
+
+<!--    模糊查找-->
+<!--            select * from mybatis.users where NAME like #{value};-->
+    <select id="getUserLike" resultType="study.pojo.User">
+        select * from mybatis.users where NAME like "%"#{value}"%";
+    </select>
+
+</mapper>

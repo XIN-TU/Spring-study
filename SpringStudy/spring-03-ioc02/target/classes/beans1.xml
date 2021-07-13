@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--        构造函数无参创建对象-->
+
+    <!--    <bean id="user" class="study.projo.User" >-->
+    <!--        <property name="name" value="Spring"/>-->
+    <!--    </bean>-->
+
+    <!--        构造函数有参创建对象-->
+
+    <!--            1.第一种 下标赋值-->
+    <!--    <bean id="user" class="study.projo.User" >-->
+    <!--        <property name="name" value="Spring"/>-->
+    <!--        <constructor-arg index="0" value="Spring" />-->
+    <!--    </bean>-->
+
+    <!--    2.第二种 通过类型赋值(当有多个同类型是 无法识别 所以不建议使）-->
+    <!--    <bean id="user" class="study.projo.User">-->
+    <!--        <constructor-arg type="java.lang.String" value="String"/>-->
+    <!--    </bean>-->
+
+    <!--    3. 第三种 通过参数名赋值 （推荐）-->
+    <bean id="user" class="study.projo.User">
+        <constructor-arg name="name" value="Xin"/>
+    </bean>
+
+    <bean id="userT" class="study.projo.UserT"/>
+    <!--    userT对象在bean中就被创建了-->
+
+    <!--    别名：如果添加了别名 也可以用别名获取对象-->
+    <alias name="user" alias="userA"/>
+
+</beans>

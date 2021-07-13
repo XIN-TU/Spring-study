@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    注解自动装配 -->
+<!--    开启注解的支持 -->
+    <context:annotation-config/>
+    <bean id="cat" class="study.projo.Cat"/>
+    <bean id="dog" class="study.projo.Dog"/>
+    <bean id="cat111" class="study.projo.Cat"/>
+    <bean id="dog222" class="study.projo.Dog"/>
+    <bean id="people" class="study.projo.People" />
+
+    <!--    显式 装配-->
+<!--    <bean id="cat" class="study.projo.Cat"/>-->
+<!--    <bean id="dog" class="study.projo.Dog"/>-->
+
+<!--    <bean id="people" class="study.projo.People" >-->
+<!--        <property name="name" value="XIN"/>-->
+<!--                <property name="dog" ref="dog"/>-->
+<!--                <property name="cat" ref="cat"/>-->
+<!--    </bean>-->
+
+<!--    byName自动装配: 会自动在容器上下文查找，和自己对象Set方法相对应的bean id-->
+<!--    <bean id="people" class="study.projo.People" autowire="byName">-->
+<!--        <property name="name" value="XIN"/>-->
+<!--    </bean>-->
+
+    <!--    byType: 会自动在容器上下文查找，和自己对象属性类型相同的bean-->
+<!--    <bean id="cat" class="study.projo.Cat"/>-->
+<!--    <bean id="dog1111" class="study.projo.Dog"/>-->
+<!--    <bean id="people" class="study.projo.People" autowire="byType">-->
+<!--        <property name="name" value="XIN"/>-->
+<!--    </bean>-->
+    
+
+
+</beans>
